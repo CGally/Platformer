@@ -1,10 +1,36 @@
+body {
+  background-color: #222222;
+}
+
 canvas {
     background-color: lightblue;
-    box-shadow: 10px 10px 20px black;
+    box-shadow: 10px 10px 20px green;
     display: block;
     margin-left: auto;
     margin-right: auto;
     outline: black 5px solid;
     padding-left: 0;
     padding-right: 0;
+}
+
+#volume-control {
+  left: 48%;
+  position: fixed;
+  text-align: center;
+  top: 81%;
+  transform: translate(-50%, -50%);
+}
+
+#vol {
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+
+#mute {
+  display: none;
+  position: relative;
+  text-align: center;
+  transform: translate(-50%, -50%);
 }
