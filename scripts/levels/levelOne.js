@@ -38,9 +38,10 @@ var levelOne = {
   spike10: new Spike(695, 260, 685, 265, 695, 270),
   lava1: new Lava(125, 360, 150, 10),
   lava2: new Lava(225, 80, 110, 10),
-  enemy1: new BasicEnemy(390, 474, 12, 6, new Platform(360, 480, 340, 20)),
-  enemy2: new BasicEnemy(175, 174, 12, 6, new Platform(145, 180, 200, 10)),
-  enemy3: new BasicEnemy(425, 54, 12, 6, new Platform(395, 60, 110, 10)),
+  basicEnemy1: new BasicEnemy(390, 474, 12, 6, new Platform(360, 480, 340, 20)),
+  basicEnemy2: new BasicEnemy(175, 174, 12, 6, new Platform(145, 180, 200, 10)),
+  basicEnemy3: new BasicEnemy(425, 54, 12, 6, new Platform(395, 60, 110, 10)),
+  flyingEnemy1: new FlyingEnemy(385, 180, 6, 12, 230, 130),
   goal: new Goal(35, 360, 20, 8),
   // goal: new Goal(35, 460, 20, 8),
   setPlatforms: function() {
@@ -70,26 +71,25 @@ var levelOne = {
     elevators.push(levelOne.elevator5);
     elevators.push(levelOne.elevator6);
   },
-  setSpikes: function() {
-    spikes.push(levelOne.spike1);
-    spikes.push(levelOne.spike2);
-    spikes.push(levelOne.spike3);
-    spikes.push(levelOne.spike4);
-    spikes.push(levelOne.spike5);
-    spikes.push(levelOne.spike6);
-    spikes.push(levelOne.spike7);
-    spikes.push(levelOne.spike8);
-    spikes.push(levelOne.spike9);
-    spikes.push(levelOne.spike10);
-  },
-  setLavas: function() {
-    lavas.push(levelOne.lava1);
-    lavas.push(levelOne.lava2);
+  setHazards: function() {
+    hazards.push(levelOne.spike1);
+    hazards.push(levelOne.spike2);
+    hazards.push(levelOne.spike3);
+    hazards.push(levelOne.spike4);
+    hazards.push(levelOne.spike5);
+    hazards.push(levelOne.spike6);
+    hazards.push(levelOne.spike7);
+    hazards.push(levelOne.spike8);
+    hazards.push(levelOne.spike9);
+    hazards.push(levelOne.spike10);
+    hazards.push(levelOne.lava1);
+    hazards.push(levelOne.lava2);
   },
   setEnemies: function() {
-    enemies.push(levelOne.enemy1);
-    enemies.push(levelOne.enemy2);
-    enemies.push(levelOne.enemy3);
+    enemies.push(levelOne.basicEnemy1);
+    enemies.push(levelOne.basicEnemy2);
+    enemies.push(levelOne.basicEnemy3);
+    enemies.push(levelOne.flyingEnemy1);
   },
   setPlayer: function() {
     player = new Player(levelOne.x, levelOne.y, levelOne.width, levelOne.height);

@@ -1,13 +1,14 @@
 var canvas = document.getElementById("canvas"),
     ctx = canvas.getContext("2d"),
+    header = document.getElementById("header"),
     keys = [],
     platforms = [],
     elevators = [],
-    spikes = [],
-    lavas = [],
+    hazards = [],
     levels = [],
     enemies = [],
     level = 0,
+    currentLevel = 1,
     player,
     goal,
     swooshSound = new buzz.sound("/sounds/swoosh.mp3", { volume: 70 }),
@@ -29,13 +30,11 @@ function setVolume(percent) {
 function render() {
   platforms = [];
   elevators = [];
-  spikes = [];
+  hazards = [];
   enemies = [];
-  lavas = [];
   levels[level].setPlatforms();
   levels[level].setElevators();
-  levels[level].setSpikes();
-  levels[level].setLavas();
+  levels[level].setHazards();
   levels[level].setEnemies();
   levels[level].setPlayer();
   levels[level].setGoal();
@@ -50,7 +49,6 @@ function step() {
     var dir = player.colCheck(player, platforms[i]);
     if (dir === "l" || dir === "r") {
       player.velX = 0;
-      player.velY = 0;
     } else if (dir === "b") {
       player.velY = 0;
       player.jumping = false;
@@ -67,17 +65,9 @@ function step() {
       player.jumping = false;
     }
   }
-  for(var i = 0; i < spikes.length; i++){
-    spikes[i].render();
-    if (player.colCheck(player, spikes[i])) {
-      swooshSound.load();
-      swooshSound.play();
-      render();
-    }
-  }
-  for(var i = 0; i < lavas.length; i++){
-    lavas[i].render();
-    if (player.colCheck(player, lavas[i])) {
+  for(var i = 0; i < hazards.length; i++){
+    hazards[i].render();
+    if (player.colCheck(player, hazards[i])) {
       swooshSound.load();
       swooshSound.play();
       render();
@@ -98,6 +88,8 @@ function step() {
   if (player.colCheck(player, goal)) {
     if(level < levels.length - 1){
       level++;
+      currentLevel = level + 1;
+      header.textContent = 'Level ' + currentLevel;
       render();
     } else {
       gameSound.stop();
@@ -141,8 +133,11 @@ mute.addEventListener('click', function(event) {
 });
 
 window.onload = function() {
+  header.textContent = 'Level ' + currentLevel;
   levels.push(levelOne);
   levels.push(levelTwo);
+  levels.push(levelThree);
+  levels.push(levelFour);
   gameSound.load();
   gameSound.play();
   gameSound.loop()

@@ -54,10 +54,11 @@ var levelTwo = {
   spike26: new Spike(570, 170, 560, 175, 570, 180),
   lava1: new Lava(80, 490, 620, 10),
   lava2: new Lava(55, 290, 450, 10),
-  enemy1: new BasicEnemy(80, 44, 12, 6, new Platform(50, 50, 80, 10)),
-  enemy2: new BasicEnemy(670, 294, 12, 6, new Platform(620, 300, 80, 10)),
-  enemy3: new BasicEnemy(510, 344, 12, 6, new Platform(510, 350, 80, 10)),
-  enemy4: new BasicEnemy(640, 394, 12, 6, new Platform(620, 400, 80, 10)),
+  basicEnemy1: new BasicEnemy(80, 44, 12, 6, new Platform(50, 50, 80, 10)),
+  basicEnemy2: new BasicEnemy(670, 294, 12, 6, new Platform(620, 300, 80, 10)),
+  basicEnemy3: new BasicEnemy(510, 344, 12, 6, new Platform(510, 350, 80, 10)),
+  basicEnemy4: new BasicEnemy(640, 394, 12, 6, new Platform(620, 400, 80, 10)),
+  flyingEnemy1: new FlyingEnemy(330, 400, 6, 12, 450, 350),
   goal: new Goal(240, 430, 20, 8),
   // goal: new Goal(35, 460, 20, 8),
   setPlatforms: function() {
@@ -87,43 +88,42 @@ var levelTwo = {
     elevators.push(levelTwo.elevator2);
     elevators.push(levelTwo.elevator3);
   },
-  setSpikes: function() {
-    spikes.push(levelTwo.spike1);
-    spikes.push(levelTwo.spike2);
-    spikes.push(levelTwo.spike3);
-    spikes.push(levelTwo.spike4);
-    spikes.push(levelTwo.spike5);
-    spikes.push(levelTwo.spike6);
-    spikes.push(levelTwo.spike7);
-    spikes.push(levelTwo.spike8);
-    spikes.push(levelTwo.spike9);
-    spikes.push(levelTwo.spike10);
-    spikes.push(levelTwo.spike11);
-    spikes.push(levelTwo.spike12);
-    spikes.push(levelTwo.spike13);
-    spikes.push(levelTwo.spike14);
-    spikes.push(levelTwo.spike15);
-    spikes.push(levelTwo.spike16);
-    spikes.push(levelTwo.spike17);
-    spikes.push(levelTwo.spike18);
-    spikes.push(levelTwo.spike19);
-    spikes.push(levelTwo.spike20);
-    spikes.push(levelTwo.spike21);
-    spikes.push(levelTwo.spike22);
-    spikes.push(levelTwo.spike23);
-    spikes.push(levelTwo.spike24);
-    spikes.push(levelTwo.spike25);
-    spikes.push(levelTwo.spike26);
-  },
-  setLavas: function() {
-    lavas.push(levelTwo.lava1);
-    lavas.push(levelTwo.lava2);
+  setHazards: function() {
+    hazards.push(levelTwo.spike1);
+    hazards.push(levelTwo.spike2);
+    hazards.push(levelTwo.spike3);
+    hazards.push(levelTwo.spike4);
+    hazards.push(levelTwo.spike5);
+    hazards.push(levelTwo.spike6);
+    hazards.push(levelTwo.spike7);
+    hazards.push(levelTwo.spike8);
+    hazards.push(levelTwo.spike9);
+    hazards.push(levelTwo.spike10);
+    hazards.push(levelTwo.spike11);
+    hazards.push(levelTwo.spike12);
+    hazards.push(levelTwo.spike13);
+    hazards.push(levelTwo.spike14);
+    hazards.push(levelTwo.spike15);
+    hazards.push(levelTwo.spike16);
+    hazards.push(levelTwo.spike17);
+    hazards.push(levelTwo.spike18);
+    hazards.push(levelTwo.spike19);
+    hazards.push(levelTwo.spike20);
+    hazards.push(levelTwo.spike21);
+    hazards.push(levelTwo.spike22);
+    hazards.push(levelTwo.spike23);
+    hazards.push(levelTwo.spike24);
+    hazards.push(levelTwo.spike25);
+    hazards.push(levelTwo.spike26);
+    hazards.push(levelTwo.lava1);
+    hazards.push(levelTwo.lava2);
   },
   setEnemies: function() {
-    enemies.push(levelTwo.enemy1);
-    enemies.push(levelTwo.enemy2);
-    enemies.push(levelTwo.enemy3);
-    enemies.push(levelTwo.enemy4);
+    enemies.push(levelTwo.basicEnemy1);
+    enemies.push(levelTwo.basicEnemy2);
+    enemies.push(levelTwo.basicEnemy3);
+    enemies.push(levelTwo.basicEnemy4);
+    enemies.push(levelTwo.flyingEnemy1);
   },
   setPlayer: function() {
     player = new Player(levelTwo.x, levelTwo.y, levelTwo.width, levelTwo.height);
