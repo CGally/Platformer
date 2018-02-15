@@ -4,7 +4,7 @@ class Player {
     this.y = y;
     this.width = width;
     this.height = height;
-    this.speed = 5;
+    this.speed = 3;
     this.velX = 0;
     this.velY = 0;
     this.friction = 0.8;

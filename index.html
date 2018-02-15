@@ -9,15 +9,18 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/buzz/1.2.0/buzz.min.js"></script>
 </head>
 <body>
-  <canvas id="canvas" width="1100" height="700"></canvas>
+  <div id='winner'>Congratulations! You won!</div>
+  <canvas id="canvas" width="700" height="500"></canvas>
   <div id="volume-control">
     <div id='vol' class="icon ion-volume-high"></div>
     <div id='mute' class="icon ion-volume-mute"></div>
     <input type="range" id="volume" value="80">
   </div>
   <script src="scripts/classes/Platform.js"></script>
+  <script src="scripts/classes/Elevator.js"></script>
   <script src="scripts/classes/Goal.js"></script>
   <script src="scripts/classes/Spike.js"></script>
+  <script src="scripts/classes/Lava.js"></script>
   <script src="scripts/classes/BasicEnemy.js"></script>
   <script src="scripts/classes/Player.js"></script>
   <script src="scripts/app.js"></script>

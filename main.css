@@ -2,6 +2,18 @@ body {
   background-color: #222222;
 }
 
+#winner {
+  color: white;
+  display: none;
+  font-size: 100px;
+  left: 50%;
+  position: fixed;
+  text-align: center;
+  top: 30%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
 canvas {
     background-color: lightblue;
     box-shadow: 10px 10px 20px green;

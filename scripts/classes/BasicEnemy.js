@@ -4,7 +4,7 @@ class BasicEnemy {
     this.y = y;
     this.width = width;
     this.height = height;
-    this.speed = 0.4;
+    this.speed = 0.3;
     this.platform = platform;
   }
   move() {
@@ -17,7 +17,7 @@ class BasicEnemy {
   }
 
   render() {;
-    ctx.fillStyle="red";
+    ctx.fillStyle="purple";
     ctx.fillRect(this.x, this.y, this.width, this.height);
   };
 };

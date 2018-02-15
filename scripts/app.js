@@ -2,7 +2,9 @@ var canvas = document.getElementById("canvas"),
     ctx = canvas.getContext("2d"),
     keys = [],
     platforms = [],
+    elevators = [],
     spikes = [],
+    lavas = [],
     levels = [],
     enemies = [],
     level = 0,
@@ -10,59 +12,45 @@ var canvas = document.getElementById("canvas"),
     goal,
     swooshSound = new buzz.sound("/sounds/swoosh.mp3", { volume: 70 }),
     gameSound = new buzz.sound("/sounds/game.mp3", { volume: 35 }),
-    currentVolume = 70
-
-var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+    winnerSound = new buzz.sound("/sounds/FFI.mp3", { volume: 35 }),
+    currentVolume = 70,
+    requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
                             window.requestAnimationFrame = requestAnimationFrame;
 
 function setVolume(percent) {
   if(percent > 0) {
     currentVolume = percent;
   }
-  beepSound.setVolume(percent);
+  swooshSound.setVolume(percent);
   gameSound.setVolume(percent / 2);
+  winnerSound.setVolume(percent / 2);
 };
 
-function paintBoard() {
+function render() {
   platforms = [];
-  spikes = [],
-  enemies = [],
+  elevators = [];
+  spikes = [];
+  enemies = [];
+  lavas = [];
   levels[level].setPlatforms();
+  levels[level].setElevators();
   levels[level].setSpikes();
+  levels[level].setLavas();
   levels[level].setEnemies();
   levels[level].setPlayer();
   levels[level].setGoal();
 };
 
-function render() {
+function step() {
+  ctx.clearRect(0, 0, 1100, 700);
   player.render();
   goal.render();
   for(var i = 0; i < platforms.length; i++){
     platforms[i].render();
-  }
-  for(var i = 0; i < spikes.length; i++){
-    spikes[i].render();
-  }
-  for(var i = 0; i < enemies.length; i++){
-    enemies[i].render();
-  }
-};
-
-function step() {
-  player.move();
-  for(var i = 0; i < enemies.length; i++){
-    enemies[i].move();
-  }
-  if (player.colCheck(player, goal)) {
-    level++;
-    paintBoard();
-  }
-  for(var i = 0; i < platforms.length; i++){
     var dir = player.colCheck(player, platforms[i]);
     if (dir === "l" || dir === "r") {
       player.velX = 0;
       player.velY = 0;
-      player.jumping = false;
     } else if (dir === "b") {
       player.velY = 0;
       player.jumping = false;
@@ -70,22 +58,54 @@ function step() {
       player.velY *= -1;
     }
   }
+  for(var i = 0; i < elevators.length; i++){
+    elevators[i].render();
+    var dir = player.colCheck(player, elevators[i]);
+    if (dir === "l" || dir === "r") {
+      player.velX = 0;
+      player.velY = 0;
+      player.jumping = false;
+    }
+  }
   for(var i = 0; i < spikes.length; i++){
+    spikes[i].render();
     if (player.colCheck(player, spikes[i])) {
       swooshSound.load();
       swooshSound.play();
-      paintBoard();
+      render();
+    }
+  }
+  for(var i = 0; i < lavas.length; i++){
+    lavas[i].render();
+    if (player.colCheck(player, lavas[i])) {
+      swooshSound.load();
+      swooshSound.play();
+      render();
     }
   }
   for(var i = 0; i < enemies.length; i++){
+    enemies[i].render();
     if (player.colCheck(player, enemies[i])) {
       swooshSound.load();
       swooshSound.play();
-      paintBoard();
+      render();
     }
   }
-  ctx.clearRect(0, 0, 1100, 700);
-  render();
+  player.move();
+  for(var i = 0; i < enemies.length; i++){
+    enemies[i].move();
+  }
+  if (player.colCheck(player, goal)) {
+    if(level < levels.length - 1){
+      level++;
+      render();
+    } else {
+      gameSound.stop();
+      winnerSound.load();
+      winnerSound.play();
+      winner.style.display = 'block';
+    }
+  }
   requestAnimationFrame(step);
 }
 
@@ -121,10 +141,11 @@ mute.addEventListener('click', function(event) {
 });
 
 window.onload = function() {
-  paintBoard();
-  render();
+  levels.push(levelOne);
+  levels.push(levelTwo);
   gameSound.load();
   gameSound.play();
   gameSound.loop()
+  render();
   step();
 };
