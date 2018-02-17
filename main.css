@@ -73,14 +73,6 @@ canvas {
   z-index: 2;
 }
 
-#volume-control {
-  left: 48%;
-  position: fixed;
-  text-align: center;
-  top: 81%;
-  transform: translate(-50%, -50%);
-}
-
 #vol {
   display: inline-block;
   position: relative;
