@@ -9,6 +9,41 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/buzz/1.2.0/buzz.min.js"></script>
 </head>
 <body>
+  <p id='currentUser'></p>
+  <button id="signUpModalBtn">Sign Up</button>
+  <button id="loginModalBtn">Sign In</button>
+  <button id='signOutBtn'>Sign Out</button>
+  <p id="signOutError"></p>
+  <div id='modal'>
+    <div id="signUpModal">
+      <h4>Sign Up</h4>
+      <p id="signUpError"></p>
+      <div>
+        <input type="text" id="signUpEmail" placeholder='Enter email' autofocus>
+      </div>
+      <div>
+        <input type="password" id="signUpPassword" placeholder='Enter password'>
+      </div>
+      <div>
+        <button id="signUpBtn">Sign Up</button>
+        <button class='cancelBtn'>Cancel</button>
+      </div>
+    </div>
+    <div id="loginModal">
+      <h4>Sign In</h4>
+      <p id="loginError"></p>
+      <div>
+        <input type="text" id="loginEmail" placeholder='Enter email' autofocus>
+      </div>
+      <div>
+        <input type="password" id="loginPassword" placeholder='Enter password'>
+      </div>
+      <div>
+        <button id="loginBtn">Sign In</button>
+        <button class='cancelBtn'>Cancel</button>
+      </div>
+    </div>
+  </div>
   <h1 id='header'></h1>
   <div id='winner'>Congratulations! You won!</div>
   <canvas id="canvas" width="700" height="500"></canvas>
@@ -17,6 +52,19 @@
     <div id='mute' class="icon ion-volume-mute"></div>
     <input type="range" id="volume" value="80">
   </div>
+  <script src="https://www.gstatic.com/firebasejs/4.10.0/firebase.js"></script>
+  <script>
+    var config = {
+      apiKey: "AIzaSyAjGiyPAM0eypRMVCVa8Xao1z4OkfwgTfU",
+      authDomain: "gally-platformer.firebaseapp.com",
+      databaseURL: "https://gally-platformer.firebaseio.com",
+      projectId: "gally-platformer",
+      storageBucket: "",
+      messagingSenderId: "942740796947"
+    };
+    firebase.initializeApp(config);
+  </script>
+  <script src="scripts/firebase.js"></script>
   <script src="scripts/classes/Platform.js"></script>
   <script src="scripts/classes/Elevator.js"></script>
   <script src="scripts/classes/Goal.js"></script>

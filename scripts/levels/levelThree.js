@@ -40,8 +40,8 @@ var levelThree = {
   basicEnemy3: new BasicEnemy(370, 214, 12, 6, new Platform(340, 220, 80, 10)),
   flyingEnemy1: new FlyingEnemy(120, 450, 6, 12, 480, 420),
   flyingEnemy2: new FlyingEnemy(200, 70, 6, 12, 120, 20),
-  // goal: new Goal(35, 460, 20, 8),
   goal: new Goal(630, 340, 20, 8),
+  // goal: new Goal(35, 460, 20, 8),
   setPlatforms: function() {
     platforms.push(levelThree.platform1);
     platforms.push(levelThree.platform2);

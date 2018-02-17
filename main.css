@@ -7,6 +7,34 @@ body {
   text-align: center;
 }
 
+#currentUser {
+  color: white;
+}
+
+#signUpModal {
+  display: none;
+}
+
+#signUpEmail {
+  margin-bottom: 10px;
+}
+
+#signUpPassword {
+  margin-bottom: 10px;
+}
+
+#loginModal {
+  display: none;
+}
+
+#loginEmail {
+  margin-bottom: 10px;
+}
+
+#loginPassword {
+  margin-bottom: 10px;
+}
+
 #winner {
   color: white;
   display: none;
@@ -28,6 +56,21 @@ canvas {
     outline: black 5px solid;
     padding-left: 0;
     padding-right: 0;
+}
+
+#modal {
+  background-color: lightgreen;
+  box-shadow: 10px 10px 20px black;
+  display: none;
+  left: 50%;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  position: fixed;
+  outline: black 5px solid;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
 }
 
 #volume-control {

@@ -9,11 +9,11 @@ class FlyingEnemy {
     this.minY = minY;
   }
   move() {
-    this.y += this.speed
+    this.y += this.speed;
     if(this.y < this.minY) {
-      this.speed *= -1
+      this.speed *= -1;
     } else if(this.y > this.maxY) {
-      this.speed *= -1
+      this.speed *= -1;
     }
   }
 
