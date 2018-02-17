@@ -32,8 +32,10 @@ class Player {
         }
     }
 
+    if(this.velY < 8) {
+      this.velY += this.gravity;
+    }
     this.velX *= this.friction;
-    this.velY += this.gravity;
     this.x += this.velX;
     this.y += this.velY;
 

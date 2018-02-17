@@ -1,4 +1,4 @@
-class Platform {
+class InvisiblePlatform {
   constructor(x, y, width, height) {
     this.x = x;
     this.y = y;
@@ -7,7 +7,7 @@ class Platform {
   }
 
   render() {
-    ctx.fillStyle="black";
+    ctx.fillStyle="pink";
     ctx.fillRect(this.x, this.y, this.width, this.height);
   };
 };

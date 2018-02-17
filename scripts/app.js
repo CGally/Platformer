@@ -3,6 +3,8 @@ var canvas = document.getElementById("canvas"),
     header = document.getElementById("header"),
     keys = [],
     platforms,
+    iplatforms,
+    bPlatforms,
     elevators,
     hazards,
     levels = [],
@@ -29,7 +31,21 @@ function setVolume(percent) {
 
 function render() {
   platforms = levels[level].platforms;
-  elevators = levels[level].elevators;
+  if(levels[level].iPlatforms) {
+    iPlatforms = levels[level].iPlatforms;
+  } else {
+    iPlatforms = [];
+  }
+  if(levels[level].bPlatforms) {
+    bPlatforms = levels[level].bPlatforms;
+  } else {
+    bPlatforms = [];
+  }
+  if(levels[level].elevators) {
+    elevators = levels[level].elevators;
+  } else {
+    elevators = [];
+  }
   hazards = levels[level].hazards;
   enemies = levels[level].enemies;
   goal = levels[level].goal;
@@ -52,13 +68,48 @@ function step() {
       player.velY *= -1;
     }
   }
-  for(var i = 0; i < elevators.length; i++){
-    elevators[i].render();
-    var dir = player.colCheck(player, elevators[i]);
-    if (dir === "l" || dir === "r") {
-      player.velX = 0;
-      player.velY = 0;
-      player.jumping = false;
+  if(iPlatforms !== []) {
+    for(var i = 0; i < iPlatforms.length; i++){
+      var dir = player.colCheck(player, iPlatforms[i]);
+      if (dir === "l" || dir === "r") {
+        iPlatforms[i].render();
+        player.velX = 0;
+      } else if (dir === "b") {
+        iPlatforms[i].render();
+        player.velY = 0;
+        player.jumping = false;
+      } else if (dir === "t") {
+        iPlatforms[i].render();
+        player.velY *= -1;
+      }
+    }
+  }
+  if(bPlatforms !== []) {
+    for(var i = 0; i < bPlatforms.length; i++){
+      bPlatforms[i].render();
+      var dir = player.colCheck(player, bPlatforms[i]);
+      if (dir === "l" || dir === "r") {
+        player.velX = 0;
+      } else if (dir === "b") {
+        if(player.velY * 2 > 10) {
+          player.velY = -10;
+        } else {
+          player.velY *= -2;
+        }
+      } else if (dir === "t") {
+        player.velY *= -1;
+      }
+    }
+  }
+  if(elevators !== []) {
+    for(var i = 0; i < elevators.length; i++){
+      elevators[i].render();
+      var dir = player.colCheck(player, elevators[i]);
+      if (dir === "l" || dir === "r") {
+        player.velX = 0;
+        player.velY = 0;
+        player.jumping = false;
+      }
     }
   }
   for(var i = 0; i < hazards.length; i++){
@@ -134,9 +185,15 @@ window.onload = function() {
   levels.push(levelTwo);
   levels.push(levelThree);
   levels.push(levelFour);
+  levels.push(levelFive);
+  levels.push(levelSix);
+  levels.push(levelSeven);
+  levels.push(levelEight);
+  levels.push(levelNine);
+  levels.push(levelTen);
   gameSound.load();
   gameSound.play();
-  gameSound.loop()
+  gameSound.loop();
   render();
   step();
 };
