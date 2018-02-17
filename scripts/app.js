@@ -2,11 +2,11 @@ var canvas = document.getElementById("canvas"),
     ctx = canvas.getContext("2d"),
     header = document.getElementById("header"),
     keys = [],
-    platforms = [],
-    elevators = [],
-    hazards = [],
+    platforms,
+    elevators,
+    hazards,
     levels = [],
-    enemies = [],
+    enemies,
     level = 0,
     currentLevel = 1,
     player,
@@ -28,16 +28,12 @@ function setVolume(percent) {
 };
 
 function render() {
-  platforms = [];
-  elevators = [];
-  hazards = [];
-  enemies = [];
-  levels[level].setPlatforms();
-  levels[level].setElevators();
-  levels[level].setHazards();
-  levels[level].setEnemies();
+  platforms = levels[level].platforms;
+  elevators = levels[level].elevators;
+  hazards = levels[level].hazards;
+  enemies = levels[level].enemies;
+  goal = levels[level].goal;
   levels[level].setPlayer();
-  levels[level].setGoal();
 };
 
 function step() {
@@ -70,7 +66,7 @@ function step() {
     if (player.colCheck(player, hazards[i])) {
       swooshSound.load();
       swooshSound.play();
-      render();
+      levels[level].setPlayer();
     }
   }
   for(var i = 0; i < enemies.length; i++){
@@ -78,7 +74,7 @@ function step() {
     if (player.colCheck(player, enemies[i])) {
       swooshSound.load();
       swooshSound.play();
-      render();
+      levels[level].setPlayer();
     }
   }
   player.move();

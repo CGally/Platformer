@@ -1,5 +1,4 @@
-var currentUser = document.getElementById("currentUser"),
-    signUpModalBtn = document.getElementById("signUpModalBtn"),
+var signUpModalBtn = document.getElementById("signUpModalBtn"),
     signUpModal = document.getElementById("signUpModal"),
     loginModalBtn = document.getElementById("loginModalBtn"),
     loginModal = document.getElementById("loginModal"),
@@ -22,10 +21,8 @@ firebase.auth().onAuthStateChanged(function(user) {
     loginModal.style.display = 'none';
     modal.style.display = 'none';
     signOutBtn.style.display = 'inline-block';
-    currentUser.textContent = 'Signed In';
   } else {
     signOutBtn.style.display = 'none';
-    currentUser.textContent = '';
   }
 });
 
