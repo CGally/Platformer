@@ -12,6 +12,7 @@
   <button id="signUpModalBtn">Sign Up</button>
   <button id="loginModalBtn">Sign In</button>
   <button id='signOutBtn'>Sign Out</button>
+  <button id='menuBtn'>Menu</button>
   <p id="signOutError"></p>
   <div id='modal'>
     <div id="signUpModal">
@@ -45,6 +46,23 @@
   </div>
   <h1 id='header'></h1>
   <div id='winner'>Congratulations! You won!</div>
+  <div id='start'>
+    <form name='levelSelect'>
+      <p><strong>Select level: </strong></p>
+      <input type="radio" name="selectedLevel" checked> 1
+      <input type="radio" name="selectedLevel"> 2
+      <input type="radio" name="selectedLevel"> 3
+      <input type="radio" name="selectedLevel"> 4
+      <input type="radio" name="selectedLevel"> 5
+      <input type="radio" name="selectedLevel"> 6
+      <input type="radio" name="selectedLevel"> 7
+      <input type="radio" name="selectedLevel"> 8
+      <input type="radio" name="selectedLevel"> 9
+      <input type="radio" name="selectedLevel"> 10
+    </form>
+    <button id='startBtn' onclick="gameStart()">Start</button>
+    <button class='cancelBtn'>Cancel</button>
+  </div>
   <canvas id="canvas" width="700" height="500"></canvas>
   <div id="volume-control">
     <div id='vol' class="icon ion-volume-high"></div>

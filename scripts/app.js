@@ -1,6 +1,8 @@
 var canvas = document.getElementById("canvas"),
     ctx = canvas.getContext("2d"),
     header = document.getElementById("header"),
+    menu = document.getElementById("menuBtn"),
+    start = document.getElementById("start"),
     keys = [],
     platforms,
     iplatforms,
@@ -10,7 +12,7 @@ var canvas = document.getElementById("canvas"),
     levels = [],
     enemies,
     level = 0,
-    currentLevel = 1,
+    currentLevel,
     player,
     goal,
     swooshSound = new buzz.sound("/sounds/swoosh.mp3", { volume: 70 }),
@@ -27,6 +29,14 @@ function setVolume(percent) {
   swooshSound.setVolume(percent);
   gameSound.setVolume(percent / 2);
   winnerSound.setVolume(percent / 2);
+};
+
+function setLevel() {
+  for(var i = 0; i < document.levelSelect.selectedLevel.length; i++){
+    if(document.levelSelect.selectedLevel[i].checked === true) {
+      level = i;
+    }
+  }
 };
 
 function render() {
@@ -148,6 +158,21 @@ function step() {
   requestAnimationFrame(step);
 }
 
+function gameStart() {
+  winnerSound.stop();
+  gameSound.load();
+  gameSound.play();
+  gameSound.loop()
+  setLevel();
+  currentLevel = level + 1;
+  header.textContent = 'Level ' + currentLevel;
+  render();
+  winner.style.display = 'none';
+  start.style.display = 'none';
+  menu.style.display = 'inline-block';
+  cancelBtn[2].style.display = 'inline-block'
+};
+
 document.body.addEventListener("keydown", function (e) {
   keys[e.keyCode] = true;
 });
@@ -179,8 +204,19 @@ mute.addEventListener('click', function(event) {
   vol.style.display = 'inline-block';
 });
 
+cancelBtn[2].addEventListener('click', function() {
+  start.style.display = 'none';
+  menu.style.display = 'inline-block';
+});
+
+menu.addEventListener('click', function() {
+  start.style.display = 'block';
+  menu.style.display = 'none';
+});
+
 window.onload = function() {
-  header.textContent = 'Level ' + currentLevel;
+  cancelBtn[2].style.display = 'none'
+  header.textContent = 'Level ';
   levels.push(levelOne);
   levels.push(levelTwo);
   levels.push(levelThree);
@@ -191,9 +227,6 @@ window.onload = function() {
   levels.push(levelEight);
   levels.push(levelNine);
   levels.push(levelTen);
-  gameSound.load();
-  gameSound.play();
-  gameSound.loop();
   render();
   step();
 };
