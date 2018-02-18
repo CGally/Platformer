@@ -10,11 +10,17 @@ class Player {
     this.friction = 0.8;
     this.jumping = false;
     this.gravity = 0.3;
+    this.flying = false;
   }
   move() {
     if (keys[38] || keys[32]) {
         // up arrow or space
-        if (!this.jumping) {
+        if(this.flying === true) {
+          if(this.velY > -6) {
+            this.velY -= 0.5;
+            this.gravity = 0.2
+          }
+        } else if(!this.jumping) {
             this.jumping = true;
             this.velY = -this.speed * 1.6;
         }

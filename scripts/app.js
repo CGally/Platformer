@@ -9,6 +9,7 @@ var canvas = document.getElementById("canvas"),
     bPlatforms,
     elevators,
     hazards,
+    powerUps,
     levels = [],
     enemies,
     level = 0,
@@ -55,6 +56,11 @@ function render() {
     elevators = levels[level].elevators;
   } else {
     elevators = [];
+  }
+  if(levels[level].powerUps) {
+    powerUps = levels[level].powerUps;
+  } else {
+    powerUps = [];
   }
   hazards = levels[level].hazards;
   enemies = levels[level].enemies;
@@ -136,6 +142,12 @@ function step() {
       swooshSound.load();
       swooshSound.play();
       levels[level].setPlayer();
+    }
+  }
+  for(var i = 0; i < powerUps.length; i++){
+    powerUps[i].render();
+    if (player.colCheck(player, powerUps[i])) {
+      player.flying = true;
     }
   }
   player.move();
@@ -231,6 +243,7 @@ window.onload = function() {
   levels.push(levelEight);
   levels.push(levelNine);
   levels.push(levelTen);
+  levels.push(levelEleven);
   render();
   step();
 };

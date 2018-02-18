@@ -11,9 +11,9 @@ var signUpModalBtn = document.getElementById("signUpModalBtn"),
     loginPassword = document.getElementById("loginPassword"),
     loginError = document.getElementById("loginError"),
     signOutBtn = document.getElementById("signOutBtn"),
-    cancelBtn = document.getElementsByClassName("cancelBtn"),
+    cancelBtn = document.getElementsByClassName("cancelBtn");
     // ref = firebase.database().ref('progress'),
-    uid;
+    // uid;
 
 // function saveProgress(uid, level) {
 //   ref.child(uid).set({
