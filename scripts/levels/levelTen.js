@@ -14,7 +14,7 @@ var levelTen = {
               new Platform(490, 130, 20, 5),
               new Platform(300, 110, 40, 5)],
   iPlatforms: [new InvisiblePlatform(100, 60, 20, 10)],
-  bPlatforms: [new BouncePlatform(-10, 490, 50, 10),
+  bPlatforms: [new BouncePlatform(-10, 490, 60, 10),
                new BouncePlatform(290, 350, 40, 10)],
   elevators: [new Elevator(0, 260, 5, 80),
               new Elevator(40, 200, 5, 60),

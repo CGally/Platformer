@@ -17,6 +17,7 @@ var canvas = document.getElementById("canvas"),
     player,
     goal,
     swooshSound = new buzz.sound("/sounds/swoosh.mp3", { volume: 70 }),
+    powerUpSound = new buzz.sound("/sounds/powerup.wav", { volume: 70 }),
     gameSound = new buzz.sound("/sounds/game.mp3", { volume: 35 }),
     winnerSound = new buzz.sound("/sounds/FFI.mp3", { volume: 35 }),
     currentVolume = 70,
@@ -28,6 +29,7 @@ function setVolume(percent) {
     currentVolume = percent;
   }
   swooshSound.setVolume(percent);
+  powerUpSound.setVolume(percent);
   gameSound.setVolume(percent / 2);
   winnerSound.setVolume(percent / 2);
 };
@@ -72,16 +74,21 @@ function step() {
   ctx.clearRect(0, 0, 1100, 700);
   player.render();
   goal.render();
-  for(var i = 0; i < platforms.length; i++){
-    platforms[i].render();
-    var dir = player.colCheck(player, platforms[i]);
-    if (dir === "l" || dir === "r") {
-      player.velX = 0;
-    } else if (dir === "b") {
-      player.velY = 0;
-      player.jumping = false;
-    } else if (dir === "t") {
-      player.velY *= -1;
+  if(bPlatforms !== []) {
+    for(var i = 0; i < bPlatforms.length; i++){
+      bPlatforms[i].render();
+      var dir = player.colCheck(player, bPlatforms[i]);
+      if (dir === "l" || dir === "r") {
+        player.velX = 0;
+      } else if (dir === "b") {
+        if(player.velY * 2 > 10) {
+          player.velY = -10;
+        } else {
+          player.velY *= -2;
+        }
+      } else if (dir === "t") {
+        player.velY *= -1;
+      }
     }
   }
   if(iPlatforms !== []) {
@@ -100,21 +107,16 @@ function step() {
       }
     }
   }
-  if(bPlatforms !== []) {
-    for(var i = 0; i < bPlatforms.length; i++){
-      bPlatforms[i].render();
-      var dir = player.colCheck(player, bPlatforms[i]);
-      if (dir === "l" || dir === "r") {
-        player.velX = 0;
-      } else if (dir === "b") {
-        if(player.velY * 2 > 10) {
-          player.velY = -10;
-        } else {
-          player.velY *= -2;
-        }
-      } else if (dir === "t") {
-        player.velY *= -1;
-      }
+  for(var i = 0; i < platforms.length; i++){
+    platforms[i].render();
+    var dir = player.colCheck(player, platforms[i]);
+    if (dir === "l" || dir === "r") {
+      player.velX = 0;
+    } else if (dir === "b") {
+      player.velY = 0;
+      player.jumping = false;
+    } else if (dir === "t") {
+      player.velY *= -1;
     }
   }
   if(elevators !== []) {
@@ -147,6 +149,8 @@ function step() {
   for(var i = 0; i < powerUps.length; i++){
     powerUps[i].render();
     if (player.colCheck(player, powerUps[i])) {
+      powerUpSound.load();
+      powerUpSound.play();
       player.flying = true;
     }
   }
