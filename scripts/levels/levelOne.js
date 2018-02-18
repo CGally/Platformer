@@ -13,7 +13,7 @@ var levelOne = {
               new Platform(345, 110, 5, 150),
               new Platform(210, 100, 140, 10),
               new Platform(75, 250, 80, 10)],
-  bPlatforms: [new BouncePlatform(350, 250, 150, 10)],
+  bPlatforms: [new BouncePlatform(345, 250, 160, 10)],
   elevators: [new Elevator(695, 0, 5, 480)],
   hazards: [new Spike(285, 100, 290, 90, 295, 100),
             new Spike(275, 100, 280, 90, 285, 100),
