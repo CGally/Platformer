@@ -12,7 +12,7 @@ var canvas = document.getElementById("canvas"),
     levels = [],
     enemies,
     level = 0,
-    currentLevel,
+    currentLevel = 1,
     player,
     goal,
     swooshSound = new buzz.sound("/sounds/swoosh.mp3", { volume: 70 }),
@@ -145,6 +145,7 @@ function step() {
   if (player.colCheck(player, goal)) {
     if(level < levels.length - 1){
       level++;
+      // saveProgress(uid, level);
       currentLevel = level + 1;
       header.textContent = 'Level ' + currentLevel;
       render();
@@ -153,6 +154,9 @@ function step() {
       winnerSound.load();
       winnerSound.play();
       winner.style.display = 'block';
+      start.style.display = 'block';
+      menu.style.display = 'none';
+      cancelBtn[2].style.display = 'none'
     }
   }
   requestAnimationFrame(step);
@@ -216,7 +220,7 @@ menu.addEventListener('click', function() {
 
 window.onload = function() {
   cancelBtn[2].style.display = 'none'
-  header.textContent = 'Level ';
+  header.textContent = 'Level ' + currentLevel;
   levels.push(levelOne);
   levels.push(levelTwo);
   levels.push(levelThree);

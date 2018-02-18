@@ -10,11 +10,20 @@ var signUpModalBtn = document.getElementById("signUpModalBtn"),
     loginEmail = document.getElementById("loginEmail"),
     loginPassword = document.getElementById("loginPassword"),
     loginError = document.getElementById("loginError"),
-    signOutBtn = document.getElementById("signOutBtn");
-    cancelBtn = document.getElementsByClassName("cancelBtn");
+    signOutBtn = document.getElementById("signOutBtn"),
+    cancelBtn = document.getElementsByClassName("cancelBtn"),
+    // ref = firebase.database().ref('progress'),
+    uid;
+
+// function saveProgress(uid, level) {
+//   ref.child(uid).set({
+//     level: level
+//   })
+// };
 
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
+    // uid = firebase.auth().currentUser.uid;
     signUpModalBtn.style.display = 'none';
     loginModalBtn.style.display = 'none';
     signUpModal.style.display = 'none';

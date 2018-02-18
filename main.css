@@ -91,16 +91,27 @@ canvas {
   z-index: 1;
 }
 
-#vol {
+#volume-control {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 20px;
+  width: 20%;
+}
+
+#volume {
   display: inline-block;
-  position: relative;
-  text-align: center;
-  transform: translate(-50%, -50%);
+}
+
+#vol {
+  color: white;
+  float: left;
+  padding-right: 10px;
 }
 
 #mute {
+  color: white;
   display: none;
-  position: relative;
-  text-align: center;
-  transform: translate(-50%, -50%);
+  float: left;
+  padding-right: 10px;
 }
