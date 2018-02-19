@@ -18,6 +18,7 @@ var canvas = document.getElementById("canvas"),
     goal,
     swooshSound = new buzz.sound("/sounds/swoosh.mp3", { volume: 70 }),
     powerUpSound = new buzz.sound("/sounds/powerup.wav", { volume: 70 }),
+    boingSound = new buzz.sound("/sounds/boing.mp3", { volume: 70 }),
     gameSound = new buzz.sound("/sounds/game.mp3", { volume: 35 }),
     winnerSound = new buzz.sound("/sounds/FFI.mp3", { volume: 35 }),
     currentVolume = 70,
@@ -30,6 +31,7 @@ function setVolume(percent) {
   }
   swooshSound.setVolume(percent);
   powerUpSound.setVolume(percent);
+  boingSound.setVolume(percent);
   gameSound.setVolume(percent / 2);
   winnerSound.setVolume(percent / 2);
 };
@@ -81,6 +83,8 @@ function step() {
       if (dir === "l" || dir === "r") {
         player.velX = 0;
       } else if (dir === "b") {
+        boingSound.load();
+        boingSound.play();
         if(player.velY * 2 > 10) {
           player.velY = -10;
         } else {
