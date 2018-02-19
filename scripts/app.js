@@ -163,17 +163,19 @@ function step() {
     enemies[i].move();
   }
   if (player.colCheck(player, goal)) {
-    if(level < levels.length - 1){
+    if(level < levels.length - 2){
       level++;
       // saveProgress(uid, level);
       currentLevel = level + 1;
       header.textContent = 'Level ' + currentLevel;
       render();
     } else {
+      level++;
+      render();
+      header.textContent = 'Congratulations! You won!';
       gameSound.stop();
       winnerSound.load();
       winnerSound.play();
-      winner.style.display = 'block';
       start.style.display = 'block';
       menu.style.display = 'none';
       cancelBtn[2].style.display = 'none'
@@ -191,7 +193,6 @@ function gameStart() {
   currentLevel = level + 1;
   header.textContent = 'Level ' + currentLevel;
   render();
-  winner.style.display = 'none';
   start.style.display = 'none';
   menu.style.display = 'inline-block';
   cancelBtn[2].style.display = 'inline-block'
@@ -252,6 +253,7 @@ window.onload = function() {
   levels.push(levelNine);
   levels.push(levelTen);
   levels.push(levelEleven);
+  levels.push(endGame);
   render();
   step();
 };
