@@ -18,6 +18,7 @@ var signUpModalBtn = document.getElementById("signUpModalBtn"),
 
 function saveProgress(uid, level) {
   if(firebaseLevel < level) {
+    firebaseLevel = level;
     ref.child(uid).set({
       level: level
     });
@@ -58,6 +59,8 @@ signUpBtn.addEventListener('click', function() {
   user = signUpEmail.value;
   var password = signUpPassword.value;
   if( email !== '' && password !== '' ) {
+    startBtn.style.display = 'none';
+    loadBtn.style.display = 'inline-block';
     firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
       signUpError.textContent = error.message;
     });
@@ -68,6 +71,8 @@ loginBtn.addEventListener('click', function() {
   var email = loginEmail.value;
   var password = loginPassword.value;
   if( email !== '' && password !== '' ) {
+    startBtn.style.display = 'none';
+    loadBtn.style.display = 'inline-block';
     firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
       loginError.textContent = error.message;
     })
@@ -94,6 +99,9 @@ signOutBtn.addEventListener('click', function() {
     signOutError.textContent = error.message;
   });
   firebaseSnapShot = undefined;
+  firebaseLevel = undefined;
+  startBtn.style.display = 'none';
+  loadBtn.style.display = 'inline-block';
   for(var i = 0; i < num.length; i++) {
     num[i].style.display = 'none';
     document.levelSelect.selectedLevel[i].style.display = 'none'

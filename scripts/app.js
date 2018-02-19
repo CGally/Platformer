@@ -154,7 +154,7 @@ function step() {
       winnerSound.load();
       winnerSound.play();
       start.style.display = 'block';
-      startBtn.style.display = 'none';
+      startBtn.style.display = 'inline-block';
       menu.style.display = 'none';
       cancelBtn[2].style.display = 'none'
     }
@@ -178,6 +178,7 @@ function gameStart() {
 
 function loadData() {
   startBtn.style.display = 'inline-block';
+  loadBtn.style.display = 'none';
   firebaseLevel = firebaseSnapShot;
   setLevelSelect();
 }
@@ -221,7 +222,7 @@ cancelBtn[2].addEventListener('click', function() {
 menu.addEventListener('click', function() {
   start.style.display = 'block';
   menu.style.display = 'none';
-  startBtn.style.display = 'none';
+  setLevelSelect();
 });
 
 window.onload = function() {
