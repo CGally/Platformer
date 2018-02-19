@@ -91,6 +91,14 @@ canvas {
   z-index: 1;
 }
 
+.levelRadio {
+  display: none;
+}
+
+.num {
+  display: none;
+}
+
 #volume-control {
   display: block;
   margin-left: auto;

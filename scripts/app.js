@@ -3,6 +3,7 @@ var canvas = document.getElementById("canvas"),
     header = document.getElementById("header"),
     menu = document.getElementById("menuBtn"),
     start = document.getElementById("start"),
+    num = document.getElementsByClassName('num'),
     keys = [],
     platforms,
     iplatforms,
@@ -16,6 +17,7 @@ var canvas = document.getElementById("canvas"),
     currentLevel = 1,
     player,
     goal,
+    g,
     swooshSound = new buzz.sound("/sounds/swoosh.mp3", { volume: 70 }),
     powerUpSound = new buzz.sound("/sounds/powerup.wav", { volume: 70 }),
     gameSound = new buzz.sound("/sounds/game.mp3", { volume: 35 }),
@@ -38,6 +40,17 @@ function setLevel() {
   for(var i = 0; i < document.levelSelect.selectedLevel.length; i++){
     if(document.levelSelect.selectedLevel[i].checked === true) {
       level = i;
+    }
+  }
+};
+
+function setLevelSelect() {
+  for(var i = 0; i < document.levelSelect.selectedLevel.length; i++){
+    if(g < i) {
+      document.levelSelect.selectedLevel[i].style.display = 'none'
+    } else if(g > i) {
+      num[i].style.display = 'inline-block';
+      document.levelSelect.selectedLevel[i].style.display = 'inline-block'
     }
   }
 };
@@ -193,6 +206,12 @@ function gameStart() {
   cancelBtn[2].style.display = 'inline-block'
 };
 
+function loadData() {
+  startBtn.style.display = 'inline-block';
+  g = f;
+  setLevelSelect();
+}
+
 document.body.addEventListener("keydown", function (e) {
   keys[e.keyCode] = true;
 });
@@ -235,6 +254,7 @@ menu.addEventListener('click', function() {
 });
 
 window.onload = function() {
+  startBtn.style.display = 'none'
   cancelBtn[2].style.display = 'none'
   header.textContent = 'Level ' + currentLevel;
   levels.push(levelOne);

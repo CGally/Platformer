@@ -17,25 +17,21 @@ var signUpModalBtn = document.getElementById("signUpModalBtn"),
     uid;
 
 function saveProgress(uid, level) {
-  ref.child(uid).set({
-    level: level
-  })
-};
-
-function setLevel(uid) {
-  return ref.child(uid).child('level').once('value').then(function(snapshot) {
-    console.log(snapshot.val())
-    return snapshot.val();
-  }, function(error) {
-    console.error(error);
-  });
+  console.log(g)
+  if(g < level) {
+    ref.child(uid).set({
+      level: level
+    });
+  }
 };
 
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     uid = firebase.auth().currentUser.uid;
-    f = setLevel(uid);
-    console.log(f);
+    ref.child(uid).child('level').on('value', function(snapshot) {
+      console.log(snapshot.val())
+      f = snapshot.val();
+    })
     signUpModalBtn.style.display = 'none';
     loginModalBtn.style.display = 'none';
     signUpModal.style.display = 'none';
