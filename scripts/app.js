@@ -161,7 +161,7 @@ function step() {
   if (player.colCheck(player, goal)) {
     if(level < levels.length - 1){
       level++;
-      // saveProgress(uid, level);
+      saveProgress(uid, level);
       currentLevel = level + 1;
       header.textContent = 'Level ' + currentLevel;
       render();
