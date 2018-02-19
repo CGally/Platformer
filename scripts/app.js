@@ -256,6 +256,7 @@ cancelBtn[2].addEventListener('click', function() {
 menu.addEventListener('click', function() {
   start.style.display = 'block';
   menu.style.display = 'none';
+  startBtn.style.display = 'none';
 });
 
 window.onload = function() {

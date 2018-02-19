@@ -17,7 +17,6 @@ var signUpModalBtn = document.getElementById("signUpModalBtn"),
     uid;
 
 function saveProgress(uid, level) {
-  console.log(g)
   if(g < level) {
     ref.child(uid).set({
       level: level
