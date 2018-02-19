@@ -95,4 +95,9 @@ signOutBtn.addEventListener('click', function() {
   }, function(error) {
     signOutError.textContent = error.message;
   });
+  f = undefined;
+  for(var i = 0; i < num.length; i++) {
+    num[i].style.display = 'none';
+    document.levelSelect.selectedLevel[i].style.display = 'none'
+  }
 });
