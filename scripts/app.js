@@ -13,11 +13,11 @@ var canvas = document.getElementById("canvas"),
     powerUps,
     levels = [],
     enemies,
+    firebaseLevel,
     level = 0,
     currentLevel = 1,
     player,
     goal,
-    g,
     swooshSound = new buzz.sound("/sounds/swoosh.mp3", { volume: 70 }),
     powerUpSound = new buzz.sound("/sounds/powerup.wav", { volume: 70 }),
     boingSound = new buzz.sound("/sounds/boing.mp3", { volume: 70 }),
@@ -48,9 +48,9 @@ function setLevel() {
 
 function setLevelSelect() {
   for(var i = 0; i < document.levelSelect.selectedLevel.length; i++){
-    if(g < i) {
+    if(firebaseLevel < i) {
       document.levelSelect.selectedLevel[i].style.display = 'none'
-    } else if(g > i) {
+    } else if(firebaseLevel > i) {
       num[i].style.display = 'inline-block';
       document.levelSelect.selectedLevel[i].style.display = 'inline-block'
     }
@@ -59,28 +59,21 @@ function setLevelSelect() {
 
 function render() {
   platforms = levels[level].platforms;
-  if(levels[level].iPlatforms) {
-    iPlatforms = levels[level].iPlatforms;
-  } else {
-    iPlatforms = [];
-  }
-  if(levels[level].bPlatforms) {
-    bPlatforms = levels[level].bPlatforms;
-  } else {
-    bPlatforms = [];
-  }
-  if(levels[level].elevators) {
-    elevators = levels[level].elevators;
-  } else {
-    elevators = [];
-  }
   if(levels[level].powerUps) {
     powerUps = levels[level].powerUps;
   } else {
     powerUps = [];
   }
-  hazards = levels[level].hazards;
-  enemies = levels[level].enemies;
+  if(levels[level].hazards) {
+    hazards = levels[level].hazards;
+  } else {
+    hazards = [];
+  }
+  if(levels[level].enemies) {
+    enemies = levels[level].enemies;
+  } else {
+    enemies = [];
+  }
   goal = levels[level].goal;
   levels[level].setPlayer();
 };
@@ -89,62 +82,33 @@ function step() {
   ctx.clearRect(0, 0, 1100, 700);
   player.render();
   goal.render();
-  if(bPlatforms !== []) {
-    for(var i = 0; i < bPlatforms.length; i++){
-      bPlatforms[i].render();
-      var dir = player.colCheck(player, bPlatforms[i]);
-      if (dir === "l" || dir === "r") {
-        player.velX = 0;
-      } else if (dir === "b") {
-        boingSound.load();
-        boingSound.play();
-        if(player.velY * 2 > 10) {
-          player.velY = -10;
-        } else {
-          player.velY *= -2;
-        }
-      } else if (dir === "t") {
-        player.velY *= -1;
-      }
-    }
-  }
-  if(iPlatforms !== []) {
-    for(var i = 0; i < iPlatforms.length; i++){
-      var dir = player.colCheck(player, iPlatforms[i]);
-      if (dir === "l" || dir === "r") {
-        iPlatforms[i].render();
-        player.velX = 0;
-      } else if (dir === "b") {
-        iPlatforms[i].render();
-        player.velY = 0;
-        player.jumping = false;
-      } else if (dir === "t") {
-        iPlatforms[i].render();
-        player.velY *= -1;
-      }
-    }
-  }
   for(var i = 0; i < platforms.length; i++){
-    platforms[i].render();
+    if(platforms[i].type !== 'invisible') {
+      platforms[i].render();
+    }
     var dir = player.colCheck(player, platforms[i]);
-    if (dir === "l" || dir === "r") {
+    if (dir === "l" || dir === "r" && platforms[i].type === 'elevator') {
       player.velX = 0;
+      player.velY = 0;
+      player.jumping = false;
+    } else if(dir === "l" || dir === "r") {
+      platforms[i].render();
+      player.velX = 0;
+    } else if (dir === "b" && platforms[i].type === 'bounce') {
+      boingSound.load();
+      boingSound.play();
+      if(player.velY * 2 > 10) {
+        player.velY = -10;
+      } else {
+        player.velY *= -2;
+      }
     } else if (dir === "b") {
+      platforms[i].render();
       player.velY = 0;
       player.jumping = false;
     } else if (dir === "t") {
+      platforms[i].render();
       player.velY *= -1;
-    }
-  }
-  if(elevators !== []) {
-    for(var i = 0; i < elevators.length; i++){
-      elevators[i].render();
-      var dir = player.colCheck(player, elevators[i]);
-      if (dir === "l" || dir === "r") {
-        player.velX = 0;
-        player.velY = 0;
-        player.jumping = false;
-      }
     }
   }
   for(var i = 0; i < hazards.length; i++){
@@ -190,6 +154,7 @@ function step() {
       winnerSound.load();
       winnerSound.play();
       start.style.display = 'block';
+      startBtn.style.display = 'none';
       menu.style.display = 'none';
       cancelBtn[2].style.display = 'none'
     }
@@ -213,7 +178,7 @@ function gameStart() {
 
 function loadData() {
   startBtn.style.display = 'inline-block';
-  g = f;
+  firebaseLevel = firebaseSnapShot;
   setLevelSelect();
 }
 

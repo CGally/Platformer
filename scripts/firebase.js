@@ -13,11 +13,11 @@ var signUpModalBtn = document.getElementById("signUpModalBtn"),
     signOutBtn = document.getElementById("signOutBtn"),
     cancelBtn = document.getElementsByClassName("cancelBtn"),
     ref = firebase.database().ref('progress'),
-    f,
+    firebaseSnapShot,
     uid;
 
 function saveProgress(uid, level) {
-  if(g < level) {
+  if(firebaseLevel < level) {
     ref.child(uid).set({
       level: level
     });
@@ -28,7 +28,7 @@ firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     uid = firebase.auth().currentUser.uid;
     ref.child(uid).child('level').on('value', function(snapshot) {
-      f = snapshot.val();
+      firebaseSnapShot = snapshot.val();
     })
     signUpModalBtn.style.display = 'none';
     loginModalBtn.style.display = 'none';
@@ -93,7 +93,7 @@ signOutBtn.addEventListener('click', function() {
   }, function(error) {
     signOutError.textContent = error.message;
   });
-  f = undefined;
+  firebaseSnapShot = undefined;
   for(var i = 0; i < num.length; i++) {
     num[i].style.display = 'none';
     document.levelSelect.selectedLevel[i].style.display = 'none'
