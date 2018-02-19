@@ -179,7 +179,7 @@ function step() {
     if(level < levels.length - 2){
       level++;
       saveProgress(uid, level);
-      currentLevel = level + 1;
+      currentLevel = level;
       header.textContent = 'Level ' + currentLevel;
       render();
     } else {

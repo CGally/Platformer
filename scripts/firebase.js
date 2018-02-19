@@ -29,7 +29,6 @@ firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     uid = firebase.auth().currentUser.uid;
     ref.child(uid).child('level').on('value', function(snapshot) {
-      console.log(snapshot.val())
       f = snapshot.val();
     })
     signUpModalBtn.style.display = 'none';
