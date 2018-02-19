@@ -6,6 +6,7 @@ var signUpModalBtn = document.getElementById("signUpModalBtn"),
     signUpBtn = document.getElementById("signUpBtn"),
     signUpEmail = document.getElementById("signUpEmail"),
     signUpPassword = document.getElementById("signUpPassword"),
+    confirmPassword = document.getElementById("confirmPassword"),
     loginBtn = document.getElementById("loginBtn"),
     loginEmail = document.getElementById("loginEmail"),
     loginPassword = document.getElementById("loginPassword"),
@@ -56,14 +57,17 @@ loginModalBtn.addEventListener('click', function() {
 
 signUpBtn.addEventListener('click', function() {
   var email = signUpEmail.value;
-  user = signUpEmail.value;
   var password = signUpPassword.value;
-  if( email !== '' && password !== '' ) {
+  var confirm = confirmPassword.value;
+  if( email !== '' && password !== '' && password === confirm) {
     startBtn.style.display = 'none';
     loadBtn.style.display = 'inline-block';
     firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
       signUpError.textContent = error.message;
     });
+  }
+  if(password !== confirm) {
+    alert('Passwords do not match');
   }
 });
 

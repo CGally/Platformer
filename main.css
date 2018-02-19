@@ -23,6 +23,10 @@ body {
   margin-bottom: 10px;
 }
 
+#confirmPassword {
+  margin-bottom: 10px;
+}
+
 #loginModal {
   display: none;
 }

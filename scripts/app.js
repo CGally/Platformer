@@ -15,7 +15,6 @@ var canvas = document.getElementById("canvas"),
     enemies,
     firebaseLevel,
     level = 0,
-    currentLevel = 1,
     player,
     goal,
     swooshSound = new buzz.sound("/sounds/swoosh.mp3", { volume: 70 }),
@@ -143,8 +142,7 @@ function step() {
     if(level < levels.length - 2){
       level++;
       saveProgress(uid, level);
-      currentLevel = level;
-      header.textContent = 'Level ' + currentLevel;
+      header.textContent = 'Level ' + level;
       render();
     } else {
       level++;
@@ -168,8 +166,7 @@ function gameStart() {
   gameSound.play();
   gameSound.loop()
   setLevel();
-  currentLevel = level;
-  header.textContent = 'Level ' + currentLevel;
+  header.textContent = 'Level ' + level;
   render();
   start.style.display = 'none';
   menu.style.display = 'inline-block';
@@ -228,7 +225,7 @@ menu.addEventListener('click', function() {
 window.onload = function() {
   startBtn.style.display = 'none'
   cancelBtn[2].style.display = 'none'
-  header.textContent = 'Level ' + currentLevel;
+  header.textContent = 'Start Game';
   levels.push(endGame);
   levels.push(levelOne);
   levels.push(levelTwo);
