@@ -145,6 +145,7 @@ function step() {
       header.textContent = 'Level ' + level;
       render();
     } else {
+      setLevelSelect();
       level++;
       render();
       header.textContent = 'Congratulations! You won!';
@@ -223,7 +224,6 @@ menu.addEventListener('click', function() {
 });
 
 window.onload = function() {
-  startBtn.style.display = 'none'
   cancelBtn[2].style.display = 'none'
   header.textContent = 'Start Game';
   levels.push(endGame);

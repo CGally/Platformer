@@ -38,8 +38,11 @@ firebase.auth().onAuthStateChanged(function(user) {
     loginModal.style.display = 'none';
     modal.style.display = 'none';
     signOutBtn.style.display = 'inline-block';
+    startBtn.style.display = 'none'
   } else {
     signOutBtn.style.display = 'none';
+    startBtn.style.display = 'inline-block'
+    loadBtn.style.display = 'none'
   }
 });
 
@@ -104,8 +107,8 @@ signOutBtn.addEventListener('click', function() {
   });
   firebaseSnapShot = undefined;
   firebaseLevel = undefined;
-  startBtn.style.display = 'none';
-  loadBtn.style.display = 'inline-block';
+  startBtn.style.display = 'inline-block';
+  loadBtn.style.display = 'none';
   for(var i = 0; i < num.length; i++) {
     num[i].style.display = 'none';
     document.levelSelect.selectedLevel[i].style.display = 'none'
