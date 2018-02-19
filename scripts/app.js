@@ -39,7 +39,7 @@ function setVolume(percent) {
 function setLevel() {
   for(var i = 0; i < document.levelSelect.selectedLevel.length; i++){
     if(document.levelSelect.selectedLevel[i].checked === true) {
-      level = i;
+      level = i + 1;
     }
   }
 };
@@ -190,7 +190,7 @@ function gameStart() {
   gameSound.play();
   gameSound.loop()
   setLevel();
-  currentLevel = level + 1;
+  currentLevel = level;
   header.textContent = 'Level ' + currentLevel;
   render();
   start.style.display = 'none';
@@ -242,6 +242,7 @@ menu.addEventListener('click', function() {
 window.onload = function() {
   cancelBtn[2].style.display = 'none'
   header.textContent = 'Level ' + currentLevel;
+  levels.push(endGame);
   levels.push(levelOne);
   levels.push(levelTwo);
   levels.push(levelThree);
