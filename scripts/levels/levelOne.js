@@ -23,7 +23,7 @@ var levelOne = {
             new Lava(360, 490, 60, 10),
             new Lava(500, 490, 60, 10)],
   enemies: [new BasicEnemy(300, 474, 12, 6, 360, 280),
-            new FlyingEnemy(420, 100, 6, 12, 150, 50)],
+            new FlyingEnemy(420, 100, 6, 12, 148, 50)],
   goal: new Goal(105, 230, 20, 8),
   setPlayer: function() {
     player = new Player(levelOne.x, levelOne.y, levelOne.width, levelOne.height);

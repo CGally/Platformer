@@ -17,25 +17,8 @@ var canvas = document.getElementById("canvas"),
     level = 0,
     player,
     goal,
-    swooshSound = new buzz.sound("/sounds/swoosh.mp3", { volume: 70 }),
-    powerUpSound = new buzz.sound("/sounds/powerup.wav", { volume: 70 }),
-    boingSound = new buzz.sound("/sounds/boing.mp3", { volume: 70 }),
-    gameSound = new buzz.sound("/sounds/game.mp3", { volume: 35 }),
-    winnerSound = new buzz.sound("/sounds/FFI.mp3", { volume: 35 }),
-    currentVolume = 70,
     requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
                             window.requestAnimationFrame = requestAnimationFrame;
-
-function setVolume(percent) {
-  if(percent > 0) {
-    currentVolume = percent;
-  }
-  swooshSound.setVolume(percent);
-  powerUpSound.setVolume(percent);
-  boingSound.setVolume(percent);
-  gameSound.setVolume(percent / 2);
-  winnerSound.setVolume(percent / 2);
-};
 
 function setLevel() {
   for(var i = 0; i < document.levelSelect.selectedLevel.length; i++){
@@ -107,7 +90,7 @@ function step() {
       player.jumping = false;
     } else if (dir === "t") {
       platforms[i].render();
-      player.velY *= -1;
+      player.velY = 0;
     }
   }
   for(var i = 0; i < hazards.length; i++){
@@ -141,6 +124,13 @@ function step() {
   if (player.colCheck(player, goal)) {
     if(level < levels.length - 2){
       level++;
+      if(level > 10) {
+        stop();
+        worldTwoSound.load();
+        worldTwoSound.play();
+        worldTwoSound.loop();
+        canvas.style.backgroundImage = "url('images/sky.png')";
+      }
       saveProgress(uid, level);
       header.textContent = 'Level ' + level;
       render();
@@ -149,7 +139,7 @@ function step() {
       level++;
       render();
       header.textContent = 'Congratulations! You won!';
-      gameSound.stop();
+      stop();
       winnerSound.load();
       winnerSound.play();
       start.style.display = 'block';
@@ -162,11 +152,20 @@ function step() {
 }
 
 function gameStart() {
-  winnerSound.stop();
-  gameSound.load();
-  gameSound.play();
-  gameSound.loop()
   setLevel();
+  if(level > 10) {
+    stop();
+    worldTwoSound.load();
+    worldTwoSound.play();
+    worldTwoSound.loop();
+    canvas.style.backgroundImage = "url('images/sky.png')";
+  } else {
+    stop();
+    worldOneSound.load();
+    worldOneSound.play();
+    worldOneSound.loop()
+    canvas.style.backgroundImage = "url('images/desert.jpg')";
+  }
   header.textContent = 'Level ' + level;
   render();
   start.style.display = 'none';
@@ -187,29 +186,6 @@ document.body.addEventListener("keydown", function (e) {
 
 document.body.addEventListener("keyup", function (e) {
   keys[e.keyCode] = false;
-});
-
-volume.addEventListener('input', function(event) {
-  setVolume(event.target.value);
-  if(event.target.value < 1) {
-    mute.style.display = 'inline-block';
-    vol.style.display = 'none';
-  } else {
-    mute.style.display = 'none';
-    vol.style.display = 'inline-block';
-  }
-});
-
-vol.addEventListener('click', function(event) {
-  setVolume(0);
-  mute.style.display = 'inline-block';
-  vol.style.display = 'none';
-});
-
-mute.addEventListener('click', function(event) {
-  setVolume(currentVolume);
-  mute.style.display = 'none';
-  vol.style.display = 'inline-block';
 });
 
 cancelBtn[2].addEventListener('click', function() {
@@ -238,6 +214,7 @@ window.onload = function() {
   levels.push(levelNine);
   levels.push(levelTen);
   levels.push(levelEleven);
+  levels.push(levelTwelve);
   levels.push(endGame);
   render();
   step();

@@ -59,7 +59,7 @@ var levelSix = {
             new BasicEnemy(670, 294, 12, 6, 700, 620),
             new BasicEnemy(510, 344, 12, 6, 590, 510),
             new BasicEnemy(640, 394, 12, 6, 700, 620),
-            new FlyingEnemy(330, 400, 6, 12, 450, 350)],
+            new FlyingEnemy(330, 400, 6, 12, 448, 350)],
   goal: new Goal(240, 430, 20, 8),
   setPlayer: function() {
     player = new Player(levelSix.x, levelSix.y, levelSix.width, levelSix.height);

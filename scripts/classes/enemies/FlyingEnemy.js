@@ -18,7 +18,7 @@ class FlyingEnemy {
   }
 
   render() {;
-    ctx.fillStyle="brown";
+    ctx.fillStyle="purple";
     ctx.fillRect(this.x, this.y, this.width, this.height);
   };
 };

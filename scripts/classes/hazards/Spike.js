@@ -33,7 +33,7 @@ class Spike {
   }
 
   render() {
-    ctx.fillStyle="#444444";
+    ctx.fillStyle="black";
     ctx.beginPath();
     ctx.moveTo(this.point1X, this.point1Y);
     ctx.lineTo(this.point2X, this.point2Y);

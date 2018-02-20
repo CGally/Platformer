@@ -7,7 +7,7 @@ class Goal {
   }
 
   render() {
-    ctx.fillStyle="orange";
+    ctx.fillStyle="#4ae764";
     ctx.fillRect(this.x, this.y, this.width, this.height);
   };
 };

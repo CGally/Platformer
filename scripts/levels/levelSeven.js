@@ -38,8 +38,8 @@ var levelSeven = {
   enemies: [new BasicEnemy(590, 454, 12, 6, 640, 560, 80, 10),
             new BasicEnemy(90, 64, 12, 6, 160, 60),
             new BasicEnemy(370, 214, 12, 6, 420, 340),
-            new FlyingEnemy(120, 450, 6, 12, 480, 420),
-            new FlyingEnemy(200, 70, 6, 12, 120, 20)],
+            new FlyingEnemy(120, 450, 6, 12, 478, 420),
+            new FlyingEnemy(200, 70, 6, 12, 118, 20)],
   goal: new Goal(630, 340, 20, 8),
   setPlayer: function() {
     player = new Player(levelSeven.x, levelSeven.y, levelSeven.width, levelSeven.hSeven);

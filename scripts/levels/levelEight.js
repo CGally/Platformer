@@ -35,7 +35,7 @@ var levelEight = {
   enemies: [new BasicEnemy(30, 384, 12, 6, 60, 0),
             new BasicEnemy(90, 294, 12, 6, 140, 80),
             new BasicEnemy(0, 204, 12, 6, 60, 0),
-            new FlyingEnemy(410, 200, 6, 12, 250, 150)],
+            new FlyingEnemy(410, 200, 6, 12, 248, 150)],
   goal: new Goal(580, 100, 20, 8),
   setPlayer: function() {
     player = new Player(levelEight.x, levelEight.y, levelEight.width, levelEight.height);

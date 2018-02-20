@@ -41,7 +41,7 @@ var levelTen = {
             new Lava(370, 140, 260, 10)],
   enemies: [new BasicEnemy(560, 424, 12, 6, 620, 540),
             new BasicEnemy(310, 104, 12, 6, 340, 300),
-            new FlyingEnemy(160, 80, 6, 12, 120, 20)],
+            new FlyingEnemy(160, 80, 6, 12, 118, 20)],
   goal: new Goal(250, 70, 20, 8),
   setPlayer: function() {
     player = new Player(levelTen.x, levelTen.y, levelTen.width, levelTen.height);

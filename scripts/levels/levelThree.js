@@ -24,7 +24,7 @@ var levelThree = {
             new Spike(575, 400, 580, 390, 585, 400),
             new Lava(80, 490, 620, 10)],
   enemies: [new BasicEnemy(150, 454, 12, 6, 200, 120),
-            new FlyingEnemy(550, 110, 6, 12, 120, 60)],
+            new FlyingEnemy(550, 110, 6, 12, 118, 60)],
   goal: new Goal(280, 50, 20, 8),
   setPlayer: function() {
     player = new Player(levelThree.x, levelThree.y, levelThree.width, levelThree.height);

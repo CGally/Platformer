@@ -89,7 +89,7 @@ class Player {
   }
 
   render() {;
-    ctx.fillStyle="green";
+    ctx.fillStyle="red";
     ctx.fillRect(this.x, this.y, this.width, this.height);
   };
 };

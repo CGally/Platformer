@@ -7,7 +7,7 @@ class Lava {
   }
 
   render() {;
-    ctx.fillStyle="red";
+    ctx.fillStyle="#890707";
     ctx.fillRect(this.x, this.y, this.width, this.height);
   };
 };
