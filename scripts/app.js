@@ -69,7 +69,7 @@ function step() {
       platforms[i].render();
     }
     var dir = player.colCheck(player, platforms[i]);
-    if (dir === "l" || dir === "r" && platforms[i].type === 'elevator') {
+    if ((dir === "l" || dir === "r") && platforms[i].type === 'elevator') {
       player.velX = 0;
       player.velY = 0;
       player.jumping = false;
