@@ -50,19 +50,22 @@
   <h1 id='header'></h1>
   <div id='start'>
     <form name='levelSelect'>
-      <p><strong>Select level: </strong></p>
-      <input class='levelRadio' type="radio" name="selectedLevel" checked> <span class='num'>1</span>
-      <input class='levelRadio' type="radio" name="selectedLevel"> <span class='num'>2</span>
-      <input class='levelRadio' type="radio" name="selectedLevel"> <span class='num'>3</span>
-      <input class='levelRadio' type="radio" name="selectedLevel"> <span class='num'>4</span>
-      <input class='levelRadio' type="radio" name="selectedLevel"> <span class='num'>5</span>
-      <input class='levelRadio' type="radio" name="selectedLevel"> <span class='num'>6</span>
-      <input class='levelRadio' type="radio" name="selectedLevel"> <span class='num'>7</span>
-      <input class='levelRadio' type="radio" name="selectedLevel"> <span class='num'>8</span>
-      <input class='levelRadio' type="radio" name="selectedLevel"> <span class='num'>9</span>
+      <h4 id='selLev'>Select level: </h4>
+      <input class='levelRadio' type="radio" name="selectedLevel" checked> <span class='num'>1 &nbsp;</span>
+      <input class='levelRadio' type="radio" name="selectedLevel"> <span class='num'>2 &nbsp;</span>
+      <input class='levelRadio' type="radio" name="selectedLevel"> <span class='num'>3 &nbsp;</span>
+      <input class='levelRadio' type="radio" name="selectedLevel"> <span class='num'>4 &nbsp;</span>
+      <input class='levelRadio' type="radio" name="selectedLevel"> <span class='num'>5 &nbsp;</span>
+      <input class='levelRadio' type="radio" name="selectedLevel"> <span class='num'>6 &nbsp;</span>
+      <input class='levelRadio' type="radio" name="selectedLevel"> <span class='num'>7 &nbsp;</span>
+      <input class='levelRadio' type="radio" name="selectedLevel"> <span class='num'>8 &nbsp;</span>
+      <input class='levelRadio' type="radio" name="selectedLevel"> <span class='num'>9 &nbsp;</span>
       <input class='levelRadio' type="radio" name="selectedLevel"> <span class='num'>10</span></br>
       <input class='levelRadio' type="radio" name="selectedLevel"> <span class='num'>11</span>
       <input class='levelRadio' type="radio" name="selectedLevel"> <span class='num'>12</span>
+      <input class='levelRadio' type="radio" name="selectedLevel"> <span class='num'>13</span>
+      <input class='levelRadio' type="radio" name="selectedLevel"> <span class='num'>14</span>
+      <input class='levelRadio' type="radio" name="selectedLevel"> <span class='num'>15</span>
     </form>
     <button id='startBtn' onclick="gameStart()">Start</button>
     <button id='loadBtn' onclick="loadData()">Load data</button>
@@ -90,23 +93,12 @@
   <script src="scripts/classes/Platform.js"></script>
   <script src="scripts/classes/hazards/Spike.js"></script>
   <script src="scripts/classes/hazards/Lava.js"></script>
-  <script src="scripts/classes/enemies/BasicEnemy.js"></script>
-  <script src="scripts/classes/enemies/FlyingEnemy.js"></script>
+  <script src="scripts/classes/BasicEnemy.js"></script>
   <script src="scripts/classes/FlyingPowerUp.js"></script>
   <script src="scripts/classes/Goal.js"></script>
   <script src="scripts/classes/Player.js"></script>
-  <script src="scripts/levels/levelOne.js"></script>
-  <script src="scripts/levels/levelTwo.js"></script>
-  <script src="scripts/levels/levelThree.js"></script>
-  <script src="scripts/levels/levelFour.js"></script>
-  <script src="scripts/levels/levelFive.js"></script>
-  <script src="scripts/levels/levelSix.js"></script>
-  <script src="scripts/levels/levelSeven.js"></script>
-  <script src="scripts/levels/levelEight.js"></script>
-  <script src="scripts/levels/levelNine.js"></script>
-  <script src="scripts/levels/levelTen.js"></script>
-  <script src="scripts/levels/levelEleven.js"></script>
-  <script src="scripts/levels/levelTwelve.js"></script>
+  <script src="scripts/levels/worldOne.js"></script>
+  <script src="scripts/levels/worldTwo.js"></script>
   <script src="scripts/levels/endGame.js"></script>
   <script src="scripts/sounds.js"></script>
   <script src="scripts/app.js"></script>

@@ -1,8 +1,8 @@
 var canvas = document.getElementById("canvas"),
     ctx = canvas.getContext("2d"),
     header = document.getElementById("header"),
-    menu = document.getElementById("menuBtn"),
     start = document.getElementById("start"),
+    selLev = document.getElementById('selLev'),
     num = document.getElementsByClassName('num'),
     keys = [],
     platforms,
@@ -10,7 +10,7 @@ var canvas = document.getElementById("canvas"),
     bPlatforms,
     elevators,
     hazards,
-    powerUps,
+    powerUp,
     levels = [],
     enemies,
     firebaseLevel,
@@ -41,10 +41,10 @@ function setLevelSelect() {
 
 function render() {
   platforms = levels[level].platforms;
-  if(levels[level].powerUps) {
-    powerUps = levels[level].powerUps;
+  if(levels[level].powerUp) {
+    levels[level].setPowerUp();
   } else {
-    powerUps = [];
+    powerUp = false;
   }
   if(levels[level].hazards) {
     hazards = levels[level].hazards;
@@ -64,6 +64,15 @@ function step() {
   ctx.clearRect(0, 0, 1100, 700);
   player.render();
   goal.render();
+  if(powerUp) {
+    powerUp.render();
+    if (player.colCheck(player, powerUp)) {
+      powerUpSound.load();
+      powerUpSound.play();
+      player.flying = true;
+      powerUp.x = -20;
+    }
+  }
   for(var i = 0; i < platforms.length; i++){
     if(platforms[i].type !== 'invisible') {
       platforms[i].render();
@@ -99,32 +108,28 @@ function step() {
       swooshSound.load();
       swooshSound.play();
       levels[level].setPlayer();
+      if(powerUp) {
+        levels[level].setPowerUp();
+      }
     }
   }
   for(var i = 0; i < enemies.length; i++){
     enemies[i].render();
+    enemies[i].move();
     if (player.colCheck(player, enemies[i])) {
       swooshSound.load();
       swooshSound.play();
       levels[level].setPlayer();
-    }
-  }
-  for(var i = 0; i < powerUps.length; i++){
-    powerUps[i].render();
-    if (player.colCheck(player, powerUps[i])) {
-      powerUpSound.load();
-      powerUpSound.play();
-      player.flying = true;
+      if(powerUp) {
+        levels[level].setPowerUp();
+      }
     }
   }
   player.move();
-  for(var i = 0; i < enemies.length; i++){
-    enemies[i].move();
-  }
   if (player.colCheck(player, goal)) {
     if(level < levels.length - 2){
       level++;
-      if(level > 10) {
+      if(level === 11) {
         stop();
         worldTwoSound.load();
         worldTwoSound.play();
@@ -188,17 +193,6 @@ document.body.addEventListener("keyup", function (e) {
   keys[e.keyCode] = false;
 });
 
-cancelBtn[2].addEventListener('click', function() {
-  start.style.display = 'none';
-  menu.style.display = 'inline-block';
-});
-
-menu.addEventListener('click', function() {
-  start.style.display = 'block';
-  menu.style.display = 'none';
-  setLevelSelect();
-});
-
 window.onload = function() {
   cancelBtn[2].style.display = 'none'
   header.textContent = 'Start Game';
@@ -215,6 +209,9 @@ window.onload = function() {
   levels.push(levelTen);
   levels.push(levelEleven);
   levels.push(levelTwelve);
+  levels.push(levelThirteen);
+  levels.push(levelFourteen);
+  levels.push(levelFifteen);
   levels.push(endGame);
   render();
   step();

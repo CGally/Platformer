@@ -13,6 +13,7 @@ var signUpModalBtn = document.getElementById("signUpModalBtn"),
     loginError = document.getElementById("loginError"),
     signOutBtn = document.getElementById("signOutBtn"),
     cancelBtn = document.getElementsByClassName("cancelBtn"),
+    menu = document.getElementById("menuBtn"),
     ref = firebase.database().ref('progress'),
     firebaseSnapShot,
     uid;
@@ -39,10 +40,15 @@ firebase.auth().onAuthStateChanged(function(user) {
     modal.style.display = 'none';
     signOutBtn.style.display = 'inline-block';
     startBtn.style.display = 'none'
+    loadBtn.style.display = 'inline-block';
+    selLev.style.display = 'block';
+    start.style.display = 'block';
+    cancelBtn[2].style.display = 'none'
   } else {
     signOutBtn.style.display = 'none';
     startBtn.style.display = 'inline-block'
     loadBtn.style.display = 'none'
+    selLev.style.display = 'none';
   }
 });
 
@@ -63,8 +69,6 @@ signUpBtn.addEventListener('click', function() {
   var password = signUpPassword.value;
   var confirm = confirmPassword.value;
   if( email !== '' && password !== '' && password === confirm) {
-    startBtn.style.display = 'none';
-    loadBtn.style.display = 'inline-block';
     firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
       signUpError.textContent = error.message;
     });
@@ -78,11 +82,24 @@ loginBtn.addEventListener('click', function() {
   var email = loginEmail.value;
   var password = loginPassword.value;
   if( email !== '' && password !== '' ) {
-    startBtn.style.display = 'none';
-    loadBtn.style.display = 'inline-block';
     firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
       loginError.textContent = error.message;
     })
+  }
+});
+
+signOutBtn.addEventListener('click', function() {
+  firebase.auth().signOut().then(function() {
+    signUpModalBtn.style.display = 'inline-block';
+    loginModalBtn.style.display = 'inline-block';
+  }, function(error) {
+    signOutError.textContent = error.message;
+  });
+  firebaseSnapShot = undefined;
+  firebaseLevel = undefined;
+  for(var i = 0; i < num.length; i++) {
+    num[i].style.display = 'none';
+    document.levelSelect.selectedLevel[i].style.display = 'none'
   }
 });
 
@@ -98,19 +115,13 @@ cancelBtn[1].addEventListener('click', function() {
   modal.style.display = 'none';
 });
 
-signOutBtn.addEventListener('click', function() {
-  firebase.auth().signOut().then(function() {
-    signUpModalBtn.style.display = 'inline-block';
-    loginModalBtn.style.display = 'inline-block';
-  }, function(error) {
-    signOutError.textContent = error.message;
-  });
-  firebaseSnapShot = undefined;
-  firebaseLevel = undefined;
-  startBtn.style.display = 'inline-block';
-  loadBtn.style.display = 'none';
-  for(var i = 0; i < num.length; i++) {
-    num[i].style.display = 'none';
-    document.levelSelect.selectedLevel[i].style.display = 'none'
-  }
+cancelBtn[2].addEventListener('click', function() {
+  start.style.display = 'none';
+  menu.style.display = 'inline-block';
+});
+
+menu.addEventListener('click', function() {
+  start.style.display = 'block';
+  menu.style.display = 'none';
+  setLevelSelect();
 });

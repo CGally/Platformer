@@ -1,6 +1,6 @@
 var swooshSound = new buzz.sound("/sounds/swoosh.mp3", { volume: 70 }),
     boingSound = new buzz.sound("/sounds/boing.mp3", { volume: 70 }),
-    powerUpSound = new buzz.sound("/sounds/powerup.wav", { volume: 14 }),
+    powerUpSound = new buzz.sound("/sounds/powerup.wav", { volume: 23 }),
     worldOneSound = new buzz.sound("/sounds/desert.mp3", { volume: 35 }),
     worldTwoSound = new buzz.sound("/sounds/sky.mp3", { volume: 35 }),
     winnerSound = new buzz.sound("/sounds/FFI.mp3", { volume: 35 }),
@@ -12,7 +12,7 @@ function setVolume(percent) {
   }
   swooshSound.setVolume(percent);
   boingSound.setVolume(percent);
-  powerUpSound.setVolume(percent / 5);
+  powerUpSound.setVolume(percent / 3);
   worldOneSound.setVolume(percent / 2);
   worldTwoSound.setVolume(percent / 2);
   winnerSound.setVolume(percent / 2);
