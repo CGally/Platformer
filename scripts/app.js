@@ -88,15 +88,21 @@ function step() {
     } else if (dir === "b" && platforms[i].type === 'bounce') {
       boingSound.load();
       boingSound.play();
+      player.friction = 0.8;
       if(player.velY * 2 > 10) {
         player.velY = -10;
       } else {
         player.velY *= -2;
       }
+    } else if (dir === "b" && platforms[i].type === 'ice') {
+      player.velY = 0;
+      player.jumping = false;
+      player.friction = 0.98;
     } else if (dir === "b") {
       platforms[i].render();
       player.velY = 0;
       player.jumping = false;
+      player.friction = 0.8;
     } else if (dir === "t") {
       platforms[i].render();
       player.velY = 0;
@@ -134,6 +140,13 @@ function step() {
         worldTwoSound.load();
         worldTwoSound.play();
         worldTwoSound.loop();
+        canvas.style.backgroundImage = "url('images/winter.jpg')";
+      }
+      if(level === 21) {
+        stop();
+        worldThreeSound.load();
+        worldThreeSound.play();
+        worldThreeSound.loop();
         canvas.style.backgroundImage = "url('images/sky.png')";
       }
       saveProgress(uid, level);
@@ -158,12 +171,18 @@ function step() {
 
 function gameStart() {
   setLevel();
-  if(level > 10) {
+  if(level > 20) {
+    stop();
+    worldThreeSound.load();
+    worldThreeSound.play();
+    worldThreeSound.loop();
+    canvas.style.backgroundImage = "url('images/sky.png')";
+  } else if(level > 10) {
     stop();
     worldTwoSound.load();
     worldTwoSound.play();
     worldTwoSound.loop();
-    canvas.style.backgroundImage = "url('images/sky.png')";
+    canvas.style.backgroundImage = "url('images/winter.jpg')";
   } else {
     stop();
     worldOneSound.load();
@@ -212,6 +231,21 @@ window.onload = function() {
   levels.push(levelThirteen);
   levels.push(levelFourteen);
   levels.push(levelFifteen);
+  levels.push(levelSixteen);
+  levels.push(levelSeventeen);
+  levels.push(levelEighteen);
+  levels.push(levelNineteen);
+  levels.push(levelTwenty);
+  levels.push(levelTwentyOne);
+  levels.push(levelTwentyTwo);
+  levels.push(levelTwentyThree);
+  levels.push(levelTwentyFour);
+  levels.push(levelTwentyFive);
+  levels.push(levelTwentySix);
+  levels.push(levelTwentySeven);
+  levels.push(levelTwentyEight);
+  levels.push(levelTwentyNine);
+  levels.push(levelThirty);
   levels.push(endGame);
   render();
   step();

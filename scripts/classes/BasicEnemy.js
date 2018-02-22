@@ -20,7 +20,7 @@ class BasicEnemy {
       this.y += this.speed;
       if(this.y < this.minY) {
         this.speed *= -1;
-      } else if(this.y > this.maxY) {
+      } else if(this.y + this.height > this.maxY) {
         this.speed *= -1;
       }
     } else {

@@ -12,6 +12,8 @@ class Platform {
       ctx.fillStyle="#b45f09";
     } else if(this.type === 'invisible') {
       ctx.fillStyle="pink";
+    } else if(this.type === 'ice') {
+      ctx.fillStyle="#2072ff";
     } else if(this.type === 'elevator') {
       ctx.fillStyle="blue";
     } else {

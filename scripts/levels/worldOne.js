@@ -24,7 +24,7 @@ var levelOne = {
             new Lava(360, 490, 60, 10),
             new Lava(500, 490, 60, 10)],
   enemies: [new BasicEnemy(300, 474, 12, 6, 360, 280),
-            new BasicEnemy(420, 100, 6, 12, 420, 420, 148, 50, 'flying')],
+            new BasicEnemy(420, 100, 6, 12, 420, 420, 160, 50, 'flying')],
   goal: new Goal(105, 230, 20, 8),
   setPlayer: function() {
     player = new Player(levelOne.x, levelOne.y, levelOne.width, levelOne.height);
@@ -50,7 +50,7 @@ var levelTwo = {
             new Lava(210, 490, 490, 10)],
   enemies: [new BasicEnemy(130, 474, 12, 6, 210, 110),
             new BasicEnemy(600, 144, 12, 6, 660, 580),
-            new BasicEnemy(390, 260, 6, 12, 390, 390, 298, 200, 'flying')],
+            new BasicEnemy(390, 260, 6, 12, 390, 390, 310, 200, 'flying')],
   goal: new Goal(610, 30, 20, 8),
   setPlayer: function() {
     player = new Player(levelTwo.x, levelTwo.y, levelTwo.width, levelTwo.height);
@@ -83,7 +83,7 @@ var levelThree = {
             new Spike(575, 400, 580, 390, 585, 400),
             new Lava(80, 490, 620, 10)],
   enemies: [new BasicEnemy(150, 454, 12, 6, 200, 120),
-            new BasicEnemy(550, 110, 6, 12, 550, 550, 118, 60, 'flying')],
+            new BasicEnemy(550, 110, 6, 12, 550, 550, 130, 60, 'flying')],
   goal: new Goal(280, 50, 20, 8),
   setPlayer: function() {
     player = new Player(levelThree.x, levelThree.y, levelThree.width, levelThree.height);
@@ -114,7 +114,7 @@ var levelFour = {
             new Lava(80, 490, 250, 10),
             new Lava(450, 490, 250, 10)],
   enemies: [new BasicEnemy(370, 474, 12, 6, 450, 330),
-            new BasicEnemy(550, 440, 6, 12, 550, 550, 448, 370, 'flying')],
+            new BasicEnemy(550, 440, 6, 12, 550, 550, 460, 370, 'flying')],
   goal: new Goal(595, 90, 20, 8),
   setPlayer: function() {
     player = new Player(levelFour.x, levelFour.y, levelFour.width, levelFour.height);
@@ -141,7 +141,7 @@ var levelFive = {
               new Platform(140, 300, 5, 110, 'elevator')],
   hazards: [new Lava(80, 490, 620, 10)],
   enemies: [new BasicEnemy(30, 284, 12, 6, 145, 0),
-            new BasicEnemy(615, 200, 6, 12, 615, 615, 298, 120, 'flying')],
+            new BasicEnemy(615, 200, 6, 12, 615, 615, 310, 120, 'flying')],
   goal: new Goal(560, 120, 20, 8),
   setPlayer: function() {
     player = new Player(levelFive.x, levelFive.y, levelFive.width, levelFive.height);
@@ -155,14 +155,14 @@ var levelSix = {
   powerUp: false,
   platforms: [new Platform(0, 480, 80, 20),
               new Platform(50, 50, 80, 10),
-              new Platform(190, 0, 5, 150),
+              new Platform(190, 0, 10, 150),
               new Platform(130, 140, 60, 10),
-              new Platform(50, 60, 5, 240),
+              new Platform(45, 50, 10, 270),
               new Platform(50, 230, 80, 10),
               new Platform(190, 230, 30, 10),
               new Platform(270, 230, 30, 10),
               new Platform(425, 80, 30, 10),
-              new Platform(505, 80, 5, 280),
+              new Platform(500, 80, 10, 280),
               new Platform(50, 300, 455, 20),
               new Platform(570, 80, 5, 100),
               new Platform(510, 240, 115, 10),
@@ -204,12 +204,12 @@ var levelSix = {
             new Spike(570, 160, 560, 165, 570, 170),
             new Spike(570, 170, 560, 175, 570, 180),
             new Lava(80, 490, 620, 10),
-            new Lava(55, 290, 450, 10)],
+            new Lava(55, 290, 445, 10)],
   enemies: [new BasicEnemy(80, 44, 12, 6, 130, 50, 44, 44),
             new BasicEnemy(670, 294, 12, 6, 700, 620),
             new BasicEnemy(510, 344, 12, 6, 590, 510),
             new BasicEnemy(640, 394, 12, 6, 700, 620),
-            new BasicEnemy(330, 400, 6, 12, 330, 330, 448, 350, 'flying')],
+            new BasicEnemy(330, 400, 6, 12, 330, 330, 460, 350, 'flying')],
   goal: new Goal(240, 430, 20, 8),
   setPlayer: function() {
     player = new Player(levelSix.x, levelSix.y, levelSix.width, levelSix.height);
@@ -256,8 +256,8 @@ var levelSeven = {
   enemies: [new BasicEnemy(590, 454, 12, 6, 640, 560),
             new BasicEnemy(90, 64, 12, 6, 160, 60),
             new BasicEnemy(370, 214, 12, 6, 420, 340),
-            new BasicEnemy(120, 450, 6, 12, 120, 120, 478, 420, 'flying'),
-            new BasicEnemy(200, 70, 6, 12, 200, 200, 118, 20, 'flying')],
+            new BasicEnemy(120, 450, 6, 12, 120, 120, 480, 420, 'flying'),
+            new BasicEnemy(200, 70, 6, 12, 200, 200, 130, 20, 'flying')],
   goal: new Goal(630, 340, 20, 8),
   setPlayer: function() {
     player = new Player(levelSeven.x, levelSeven.y, levelSeven.width, levelSeven.height);
@@ -301,7 +301,7 @@ var levelEight = {
   enemies: [new BasicEnemy(30, 384, 12, 6, 60, 0),
             new BasicEnemy(90, 294, 12, 6, 140, 80),
             new BasicEnemy(0, 204, 12, 6, 60, 0),
-            new BasicEnemy(410, 200, 6, 12, 410, 410, 248, 150, 'flying')],
+            new BasicEnemy(410, 200, 6, 12, 410, 410, 260, 150, 'flying')],
   goal: new Goal(580, 100, 20, 8),
   setPlayer: function() {
     player = new Player(levelEight.x, levelEight.y, levelEight.width, levelEight.height);
@@ -351,7 +351,7 @@ var levelNine = {
   enemies: [new BasicEnemy(390, 474, 12, 6, 695, 360),
             new BasicEnemy(175, 174, 12, 6, 345, 145),
             new BasicEnemy(425, 54, 12, 6, 505, 395),
-            new BasicEnemy(385, 180, 6, 12, 385, 385, 228, 130, 'flying')],
+            new BasicEnemy(385, 180, 6, 12, 385, 385, 240, 130, 'flying')],
   goal: new Goal(35, 360, 20, 8),
   setPlayer: function() {
     player = new Player(levelNine.x, levelNine.y, levelNine.width, levelNine.height);
@@ -401,7 +401,7 @@ var levelTen = {
             new Lava(370, 140, 260, 10)],
   enemies: [new BasicEnemy(560, 424, 12, 6, 620, 540),
             new BasicEnemy(310, 104, 12, 6, 340, 300),
-            new BasicEnemy(160, 80, 6, 12, 160, 160, 118, 20, 'flying')],
+            new BasicEnemy(160, 80, 6, 12, 160, 160, 130, 20, 'flying')],
   goal: new Goal(250, 70, 20, 8),
   setPlayer: function() {
     player = new Player(levelTen.x, levelTen.y, levelTen.width, levelTen.height);

@@ -23,6 +23,7 @@ class Player {
         } else if(!this.jumping) {
             this.jumping = true;
             this.velY = -this.speed * 1.6;
+            this.friction = 0.8;
         }
     }
     if (keys[39]) {
