@@ -9,7 +9,11 @@ class Player {
     this.velY = 0;
     this.friction = 0.8;
     this.jumping = false;
-    this.gravity = 0.3;
+    if(level > 30) {
+      this.gravity = 0.12;
+    } else {
+      this.gravity = 0.3;
+    }
     this.flying = false;
   }
   move() {

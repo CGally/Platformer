@@ -1,11 +1,12 @@
 class Spike {
-  constructor(point1X, point1Y, point2X, point2Y, point3X, point3Y) {
+  constructor(point1X, point1Y, point2X, point2Y, point3X, point3Y, type) {
     this.point1X = point1X;
     this.point1Y = point1Y;
     this.point2X = point2X;
     this.point2Y = point2Y;
     this.point3X = point3X;
     this.point3Y = point3Y;
+    this.type = type;
     if(point2X < point1X) {
       this.x = point2X;
     } else {
@@ -33,7 +34,11 @@ class Spike {
   }
 
   render() {
-    ctx.fillStyle="black";
+    if(this.type === 'space') {
+     ctx.fillStyle = "gray";
+   } else {
+     ctx.fillStyle="black";
+   }
     ctx.beginPath();
     ctx.moveTo(this.point1X, this.point1Y);
     ctx.lineTo(this.point2X, this.point2Y);

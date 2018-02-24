@@ -9,15 +9,17 @@ class Platform {
 
   render() {
     if(this.type === 'bounce') {
-      ctx.fillStyle="#b45f09";
+      ctx.fillStyle = "#b45f09";
     } else if(this.type === 'invisible') {
-      ctx.fillStyle="pink";
+      ctx.fillStyle = "pink";
     } else if(this.type === 'ice') {
-      ctx.fillStyle="#2072ff";
+      ctx.fillStyle = "#2072ff";
+    } else if(this.type === 'space') {
+      ctx.fillStyle = "gray";
     } else if(this.type === 'elevator') {
-      ctx.fillStyle="blue";
+      ctx.fillStyle = "blue";
     } else {
-      ctx.fillStyle="black";
+      ctx.fillStyle = "black";
     }
     ctx.fillRect(this.x, this.y, this.width, this.height);
   };

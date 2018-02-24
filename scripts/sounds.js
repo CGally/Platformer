@@ -4,6 +4,7 @@ var swooshSound = new buzz.sound("/sounds/swoosh.mp3", { volume: 70 }),
     worldOneSound = new buzz.sound("/sounds/desert.mp3", { volume: 35 }),
     worldTwoSound = new buzz.sound("/sounds/winter.mp3", { volume: 35 }),
     worldThreeSound = new buzz.sound("/sounds/sky.mp3", { volume: 35 }),
+    worldFourSound = new buzz.sound("/sounds/space.mp3", { volume: 35 }),
     winnerSound = new buzz.sound("/sounds/FFI.mp3", { volume: 35 }),
     currentVolume = 70;
 
@@ -17,6 +18,7 @@ function setVolume(percent) {
   worldOneSound.setVolume(percent / 2);
   worldTwoSound.setVolume(percent / 2);
   worldThreeSound.setVolume(percent / 2);
+  worldFourSound.setVolume(percent / 2);
   winnerSound.setVolume(percent / 2);
 };
 
@@ -25,6 +27,7 @@ function stop() {
   worldOneSound.stop();
   worldTwoSound.stop();
   worldThreeSound.stop();
+  worldFourSound.stop();
 };
 
 volume.addEventListener('input', function(event) {

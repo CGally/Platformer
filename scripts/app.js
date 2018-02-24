@@ -149,6 +149,13 @@ function step() {
         worldThreeSound.loop();
         canvas.style.backgroundImage = "url('images/sky.png')";
       }
+      if(level === 31) {
+        stop();
+        worldFourSound.load();
+        worldFourSound.play();
+        worldFourSound.loop();
+        canvas.style.backgroundImage = "url('images/space.jpg')";
+      }
       saveProgress(uid, level);
       header.textContent = 'Level ' + level;
       render();
@@ -171,7 +178,13 @@ function step() {
 
 function gameStart() {
   setLevel();
-  if(level > 20) {
+  if(level > 30) {
+    stop();
+    worldFourSound.load();
+    worldFourSound.play();
+    worldFourSound.loop();
+    canvas.style.backgroundImage = "url('images/space.jpg')";
+  } else if(level > 20) {
     stop();
     worldThreeSound.load();
     worldThreeSound.play();
@@ -246,6 +259,16 @@ window.onload = function() {
   levels.push(levelTwentyEight);
   levels.push(levelTwentyNine);
   levels.push(levelThirty);
+  levels.push(levelThirtyOne);
+  levels.push(levelThirtyTwo);
+  levels.push(levelThirtyThree);
+  levels.push(levelThirtyFour);
+  levels.push(levelThirtyFive);
+  levels.push(levelThirtySix);
+  levels.push(levelThirtySeven);
+  levels.push(levelThirtyEight);
+  levels.push(levelThirtyNine);
+  levels.push(levelFourty);
   levels.push(endGame);
   render();
   step();
